@@ -1,0 +1,674 @@
+\documentclass[9pt]{article}
+\usepackage{parskip}
+\usepackage[margin=1.5in]{geometry}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{todonotes}
+\usepackage{hyperref}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0.2pt}
+  \setlength{\parsep}{0.2pt}
+}{
+  \end{itemize}
+}
+
+\newenvironment{editorial}
+{ \color{Red} \framebox{{\bf REVISION}} }
+{  }
+
+\newenvironment{editorial-addr}
+{ \color{OliveGreen} \framebox{{\bf REVISION}} }
+{  }
+
+\newenvironment{reviewer}
+{ \color{Red} \framebox{{\bf FEEDBACK}} }
+{  }
+
+\newenvironment{reviewer-addr}
+{ \color{OliveGreen} \framebox{{\bf FEEDBACK}} }
+{  }
+
+\newenvironment{reviewer-reject}
+{ \color{BurntOrange} \framebox{{\bf FEEDBACK}} }
+{  }
+
+\newenvironment{answer}
+{ \em \framebox{{\bf AUTHOR RESPONSE}} }
+{  }
+
+\begin{document}
+
+\title{Cover Letter for the OOPSLA Reviewers\\\Large Automating Ad hoc Data Representation Transformations}
+\maketitle
+
+We would like to thank our reviewers for their thorough examinations of this paper. Furthermore, we are most grateful for their suggestions, which allowed us to make the paper more useful and accessible. We addressed all comments, without exceptions, to the best of our ability.
+
+\section{Title Change}
+
+Before going into the cover letter and describing the revisions, we would like to take a moment to ask our reviewers for their opinion:
+
+\begin{itemize}
+  \item Do you think ``Data-centric Meta-programming'' is a better title for this work? It captures the programmer-driven and compile-time aspects of our work while keeping the focus on data: data representation and operations on data. We have used this title in two presentations (\href{https://speakerdeck.com/vladureche/data-centric-metaprogramming-at-icooolps-2015}{ICOOOLPS} and \href{https://speakerdeck.com/vladureche/data-centric-metaprogramming-at-ecocloud-2015}{EcoCloud}) with very good feedback.
+  \item If so, would you encourage us to update the title for the camera-ready version of the paper? This would require adapting the paper content to replace references to ``Ad hoc Data Representation Transformations'' by ``Data-centric Meta-programming''.
+\end{itemize}
+
+Please let us know your opinions and we will act accordingly. We will now continue with the cover letter.
+
+\section{Required Second-phase Revisions}
+
+After lengthy discussions the reviewers have decided to accept this paper to phase 2. It is imperative that the authors integrate all clarifications made in the rebuttal, and in particular/in addition focus on the following points:
+
+\begin{editorial}
+1. As promised in the response, add breakdowns of performance measurements wrt the mentioned sources of improvements
+\end{editorial}
+
+\begin{answer}
+\end{answer}
+
+\begin{editorial}
+2. Tone down the claims regarding the generality of the approach, as it is yet unclear whether/how it applies beyond Scala
+\end{editorial}
+
+\begin{answer}
+\end{answer}
+
+What follows is a set of responses to each of the reviewers' comments and requests.
+
+Once again, we are grateful to the reviewers for the work they put into the reviews and their very useful feedback! We apologize in advance for the feedback that we did not have time or did not know how to address, but, nevertheless, we have done our best to improve the paper.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\section{Individual Reviews}
+
+\subsection{First Review}
+
+\subsubsection{Paper Summary}
+
+\begin{reviewer}
+This paper describes how programmers specify more space efficient data layout in a statically typed language at a variety of scopes (methods, code blocks, etc.) and then the compiler type checks it and inserts the code that automatically transforms between the high and low level representations as needed based on user annotations.  This approach is analogous to the compiler boxing and unboxing with some user annotations, but the programmer has to do more here. The approach speeds up some Scala microbenchmarks.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Strengths}
+
+\begin{reviewer}
+\begin{packed_item}
+\item Interesting idea for generalizing the idea of boxing and unboxing.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Weaknesses}
+
+\begin{reviewer}
+\begin{packed_item}
+\item Relies on programmer to come up with the better representation.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+\begin{packed_item}
+\item The analysis is missing key descriptions of 1) programmer work, 2) methodology for experiments (points to a web page), and 3) memory and code analysis of results.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Overall}
+
+\begin{reviewer}
+This work has the potential to be very interesting, but this paper is not yet ready to accepted, because of presentations choices and lack of analysis of where the benefits come from and discussion of programmer work.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The paragraph starting with "In this way.." in the introduction uses the passive voice (a problem elsewhere as well), and so it very difficult to tell what the programmer does, what the compiler does, and what the runtime does.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+This lack of clarity on how the approach works and fits into the existing scala system runs throughout the paper.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+Section 2.1 lacks any description of what the approach actually does to the code or allocation, and thus why the code improves.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The IntPairComplexToLongComplex method is never defined in the paper.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+Section 4.1 elides all the details, but that is the actual work the developer needs to do to define make this approach work.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The key work of the programmer on how to define data transformations is also missing from the other examples. None of the specific resulting consequences are measured, e.g., reduced data allocation or smaller code footprint (or larger).
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+Does the approach attains it's improvements from less allocation, better code, or both, and if both, which one is more important. The results section does not resolve this question. Results are just: microbenchmarks go faster.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The methodology is not described. Measuring JIT code and GC has a number of challenges and it is not sufficient to point the reader to the Scala web page to find out about the performance analysis methodology. Since the approach is saving GC and/or allocation, that actually should be measured and reported.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+Data layout is a memory optimization, yet the results do not include memory.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The paper needs a discussion of how hard it is to define these transformations and how much code it takes. Can they be sprinkled lots of places or just one? How hard is it for developers to do it?
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The paper spends a lot of pages (~4) describing LDL, which can easily be summarized in a page.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\subsection{Second Review}
+
+\subsubsection{Paper Summary}
+
+\begin{reviewer}
+The paper opens and extends the Late Data Layout mechanism developed for the Scala compiler (to automatically and autonomously choose between different data representations, such as values or heap objects) for the programmer, who can use it to create and use her own (low-level) data representations in specified scopes.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Comments For Author}
+
+\begin{reviewer}
+A very well-written paper. Even though the scope and utility of the presented work are somewhat limited, it nevertheless makes a solid contribution to (object-oriented) programming, with applications mainly in performance-critical contexts (in which ADRTs likely lead to cleaner code than its ad-hoc tuning alternatives).
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The paper is carefully set in the context of related work, the presented evaluation is sufficient to convince me of the practical relevance and utility. Overall, very well done!
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+
+
+
+
+
+
+
+\newpage
+
+\subsection{Third Review}
+
+\subsubsection{Paper Summary}
+
+\begin{reviewer}
+This paper presents a technique to automatically change data representation for efficient access. To use the technique, users first delimits the scope for which transformation should be considered. In addition, users also provide the compiler (in this case the Scala compiler) with a descriptor object the encodes how each of the data types can be transformed. Given these inputs, the compiler then searches through the delimited scope and performs a source-to-source transformation in choosing the most efficient representation for each data type. The paper shows that the technique can handle interactions with other Java language features, and can improve performance in a variety of benchmarks.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+\subsubsection{Comments For Author}
+
+\begin{reviewer}
+The paper discusses an important problem (data layout) and proposes an interesting semi-automated solution. It is a well-structured paper.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+My main concern, however, is with the novelty of the solution to the problem,
+especially given the prior work on late data representation, which makes up
+the bulk of the implementation of the presented technique:
+\begin{packed_item}
+\item I am wondering why do users need to delimit the scope for which the
+transformation should be applied. Why not apply to the entire program? Is it
+a scalability issue?
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+\begin{packed_item}
+\item How easy is it to write the transformation objects? While some
+seem trivial to write (e.g., the motivating example), I imagine some of them
+mentioned in the benchmarks can be quite involved. It would be great if the
+authors can show how big those transformers are, and also discuss how can
+developers come up with such representations.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+\begin{packed_item}
+\item Would the same technique be applicable beyond Scala? For instance
+I would like to understand whether the proposed technique can be achieved
+using tagged unions in languages that support them. I can imagine a smart
+compiler choosing how to implement each instance of the tagged union using
+static analysis, and inserting appropriate coercions as needed. In that sense
+it seems to be similar to the technique proposed in the paper.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Some Technicalities}
+
+\begin{reviewer}
+\begin{packed_item}
+\item How does the technique handle dynamically loaded code in Scala?
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+\begin{packed_item}
+\item What about code that calls native methods via JNI?
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+\subsection{Forth Review}
+
+\subsubsection{Paper Summary}
+
+\begin{reviewer}
+The paper proposes a mechanism which allows programmers to 1) define operations which
+implicitly transform between two different representations of a type, and 2) the compiler
+applies these operations implicitly, whenever necessary within a given scope. The approach
+is based on Scala’s Late Data Layout transformations, with the difference that the former
+is not programmer-driven, and cannot be restricted to separate scopes.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+The paper explains the tree phases involved in Late Data Layout Transformation (LDRT) and
+how they are applied in  Ad Hoc Data Representation Transformation (ADRT). It explains how
+ADRT interacts with traits. Overloading, generics, and separate compilation. It also introduces
+the concept of “bypass” transformations, which allows to avoid unnecessary intermediate
+transformations.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+In order to validate the approach, the authors developed some micro-benchmarks (gcd on
+Complex numbers), least squares method, Sensor readings  (filtering and visualization of
+Sensor readings), and Hamming numbers. In these cases they observed speedups between
+2 and 13 times. They also considered the Scala-streams library and benchmarks
+proposed in [13], and the framian vector implementation from a commercial entity, and
+observe speedups of about 10 times.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Points in Favor}
+
+\begin{reviewer}
+\begin{packed_item}
+\item Clearly stated problem, and clear solution
+\item The paper is extremely well-written with a small motivating example, and very clear organization.
+Questions are asked which motivate the discussion further, and pointers are given to where
+the answer will appear.
+\item Implementation has been developed, and the benchmarks are positive
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Points Against}
+
+\begin{reviewer}
+\begin{packed_item}
+\item The semantics of the ADRT is described incrementally and in terms of three phases. Various
+Extra aspects of the phases are uncovered as we progress through the paper. Is it possible
+to give a more declarative semantics? If not, I would propose that in the next version of
+your paper, you give the definition of each phase in one go.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+\begin{packed_item}
+\item Even though the benchmark results are very encouraging, I wonder how often one has
+the opportunity for such data representations. The benchmarks you have chosen either
+allocated large numbers of short lived intermediate objects, or have large containers of
+objects; thus you could think that they were specifically chosen for this work, and that
+they would not be representative of many real situations.
+\end{packed_item}
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Questions}
+
+\begin{reviewer}
+1)  I suppose that the “gcd” method called in the first box in page 1 is different from
+the “gcd” method called in the first box in page 2.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+2)  When I first read section 2.3, I thought that by some magic the correct implementation
+of gcd would be created. But when I reached the end of section 4, I came to the
+conclusion that this is not done. So, I suppose that the gcd created within the adrt
+will bind the wrong version of %? And that there will be an error message because
+there will be no appropriate method called norm? Also, you refer to section 4.4
+for semantics preservation, but I do not see the relation between that section and
+semantics preservation; did you mean 4.1?
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+3)  Under “Target Semantics” you are enumerating several requirements from these
+Transformation objects. I suppose that these requirements are not checked in any way.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+4)  Do you support cyclic representation transformation, eg something
+like
+adrt(T1toT2){
+   adrt(T2toT1){
+    ... code ...
+   }
+}
+where T1toT2 has T1 as the high level type, and T2 as the low level type, while T2toT1 has T2 as the high level type, and T1 as the low level type.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+5)  At several points you require value types, but my I thought that the approach should also work for mutable types. Can you say why you need the types to be immutable? Also, what does immutable mean in that case, whether it is checked and how?
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Suggestions}
+
+\begin{reviewer}
+Initially I was very surprised that adrt was not a keyword – I found the explanation later;
+I suggest you bring the explanation forward.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+On page 3 I was puzzling how the system could work without some signature defining that
+high level and the representation of a type were. This became clearer when I read the
+Description of IntPairComplexToLongComplex on page 5. I think you should bring it forward.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer}
+I also suggest you give a link to  Gaussian integers, so that the reader is not puzzled about the
+meaning of ``norm'' for pairs of integers.
+\end{reviewer}
+
+\begin{answer}
+\end{answer}
+
+\end{document}
