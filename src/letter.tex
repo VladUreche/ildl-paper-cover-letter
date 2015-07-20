@@ -46,6 +46,8 @@
 We would like to thank our reviewers for their thorough examination of this paper and their suggestions, which allowed us to make the paper more useful and accessible. We addressed all comments, without exceptions, to the best of our ability.
 
 
+\newpage
+
 \section{Required Second-phase Revisions}
 
 
@@ -74,9 +76,9 @@ quantifying memory effects. The benchmarks discussion is now much more detailed.
 
 \end{answer}
 
-\begin{editorial}
+\begin{editorial-addr}
 2. Tone down the claims regarding the generality of the approach, as it is yet unclear whether/how it applies beyond Scala
-\end{editorial}
+\end{editorial-addr}
 
 \begin{answer}
 We went over the paper to ensure that we do not claim applicability beyond Scala. In the Introduction section we changed occurrences of ``general'' (pertaining to the flexibility of the transformation) to ``as the programmer sees fit''. In the Conclusions we added an explicit sentence: ``We demonstrated our mechanism in the Scala language, yet speculate that the same principles can be applicable in different language settings.'' This is the strongest generality claim we make in the revised paper, yet we believe it is reasonable to be speculative in a Conclusions section.
@@ -111,12 +113,7 @@ If the reviewers have any feedback on the possible title change, it would be hig
 
 \subsubsection{Paper Summary}
 
-\begin{reviewer}
 This paper describes how programmers specify more space efficient data layout in a statically typed language at a variety of scopes (methods, code blocks, etc.) and then the compiler type checks it and inserts the code that automatically transforms between the high and low level representations as needed based on user annotations.  This approach is analogous to the compiler boxing and unboxing with some user annotations, but the programmer has to do more here. The approach speeds up some Scala microbenchmarks.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
@@ -124,14 +121,9 @@ This paper describes how programmers specify more space efficient data layout in
 
 \subsubsection{Strengths}
 
-\begin{reviewer}
 \begin{packed_item}
 \item Interesting idea for generalizing the idea of boxing and unboxing.
 \end{packed_item}
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
@@ -139,13 +131,14 @@ This paper describes how programmers specify more space efficient data layout in
 
 \subsubsection{Weaknesses}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item Relies on programmer to come up with the better representation.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+In Section 2.2 we explained why we think it's desirable to allow the programmer to define the transformation description object and why this process is very difficult to automate: ``A natural question to ask is why not automate ...''.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,6 +198,7 @@ Section 2.1 lacks any description of what the approach actually does to the code
 \end{reviewer}
 
 \begin{answer}
+We have explained why the speedup occurs in Section 2.1 (``This rather large speedup is the effect of ...'') and provide a full breakdown of how the speedup is achieved in the Benchmarks section.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,17 +210,19 @@ The IntPairComplexToLongComplex method is never defined in the paper.
 \end{reviewer}
 
 \begin{answer}
+We included a shortened version of this description object as early as Section 2.1 and included a full description in the appendix.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 Section 4.1 elides all the details, but that is the actual work the developer needs to do to define make this approach work.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We have added brief passages on how the transformation description objects should be defined in Sections 2.2 and 4.1. There are two reasons we refrain from giving a recipe: 1. Each set of transformations is ultimately tailored for the exact program it is meant for and 2. The target audience, namely the research community, would benefit less from this information. Instead, we show complete transformations with tips and tricks in the online project documentation (\url{https://github.com/miniboxing/ildl-plugin/wiki}), which is the entry point for the programmers.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -282,17 +278,19 @@ The paper needs a discussion of how hard it is to define these transformations a
 \end{reviewer}
 
 \begin{answer}
+This point has been addressed in Sections 4.6 and 6.1.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The paper spends a lot of pages (~4) describing LDL, which can easily be summarized in a page.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+If there is consensus among reviewers that Section 3 should be shortened we will do so. The single reason we chose to slowly build up the explanation was to allow our readers to understand the main idea without forcing them to branch off and read the LDL paper.
 \end{answer}
 
 
@@ -316,12 +314,7 @@ The paper spends a lot of pages (~4) describing LDL, which can easily be summari
 
 \subsubsection{Paper Summary}
 
-\begin{reviewer}
 The paper opens and extends the Late Data Layout mechanism developed for the Scala compiler (to automatically and autonomously choose between different data representations, such as values or heap objects) for the programmer, who can use it to create and use her own (low-level) data representations in specified scopes.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
@@ -329,23 +322,19 @@ The paper opens and extends the Late Data Layout mechanism developed for the Sca
 
 \subsubsection{Comments For Author}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 A very well-written paper. Even though the scope and utility of the presented work are somewhat limited, it nevertheless makes a solid contribution to (object-oriented) programming, with applications mainly in performance-critical contexts (in which ADRTs likely lead to cleaner code than its ad-hoc tuning alternatives).
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
 The paper is carefully set in the context of related work, the presented evaluation is sufficient to convince me of the practical relevance and utility. Overall, very well done!
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you for the very positive review!
 \end{answer}
+
+
+
 
 
 
@@ -360,38 +349,28 @@ The paper is carefully set in the context of related work, the presented evaluat
 
 \subsubsection{Paper Summary}
 
-\begin{reviewer}
 This paper presents a technique to automatically change data representation for efficient access. To use the technique, users first delimits the scope for which transformation should be considered. In addition, users also provide the compiler (in this case the Scala compiler) with a descriptor object the encodes how each of the data types can be transformed. Given these inputs, the compiler then searches through the delimited scope and performs a source-to-source transformation in choosing the most efficient representation for each data type. The paper shows that the technique can handle interactions with other Java language features, and can improve performance in a variety of benchmarks.
-\end{reviewer}
 
-\begin{answer}
-\end{answer}
+
 
 \subsubsection{Comments For Author}
 
-\begin{reviewer}
 The paper discusses an important problem (data layout) and proposes an interesting semi-automated solution. It is a well-structured paper.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
-My main concern, however, is with the novelty of the solution to the problem,
-especially given the prior work on late data representation, which makes up
-the bulk of the implementation of the presented technique:
+My main concern, however, is with the novelty of the solution to the problem, especially given the prior work on late data representation, which makes up the bulk of the implementation of the presented technique:
+
+\begin{reviewer-addr}
 \begin{packed_item}
-\item I am wondering why do users need to delimit the scope for which the
-transformation should be applied. Why not apply to the entire program? Is it
-a scalability issue?
+\item I am wondering why do users need to delimit the scope for which the transformation should be applied. Why not apply to the entire program? Is it a scalability issue?
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Different transformations are suitable for different contexts, all within a single program. The scoped nature of the ADRT transformation is not a limitation, but actually part of its design. We have clarified this in Sections 2.2 and 4.6.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -474,47 +453,32 @@ it seems to be similar to the technique proposed in the paper.
 
 \subsubsection{Paper Summary}
 
-\begin{reviewer}
 The paper proposes a mechanism which allows programmers to 1) define operations which
 implicitly transform between two different representations of a type, and 2) the compiler
 applies these operations implicitly, whenever necessary within a given scope. The approach
 is based on Scala’s Late Data Layout transformations, with the difference that the former
 is not programmer-driven, and cannot be restricted to separate scopes.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
 The paper explains the tree phases involved in Late Data Layout Transformation (LDRT) and
 how they are applied in  Ad Hoc Data Representation Transformation (ADRT). It explains how
 ADRT interacts with traits. Overloading, generics, and separate compilation. It also introduces
 the concept of “bypass” transformations, which allows to avoid unnecessary intermediate
 transformations.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
 In order to validate the approach, the authors developed some micro-benchmarks (gcd on
 Complex numbers), least squares method, Sensor readings  (filtering and visualization of
 Sensor readings), and Hamming numbers. In these cases they observed speedups between
 2 and 13 times. They also considered the Scala-streams library and benchmarks
 proposed in [13], and the framian vector implementation from a commercial entity, and
 observe speedups of about 10 times.
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
@@ -576,41 +540,55 @@ they would not be representative of many real situations.
 
 \subsubsection{Questions}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 1)  I suppose that the “gcd” method called in the first box in page 1 is different from
 the “gcd” method called in the first box in page 2.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We have added a suffix which distinguishes the different \verb=gcd= methods in Section 2.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 2)  When I first read section 2.3, I thought that by some magic the correct implementation
 of gcd would be created. But when I reached the end of section 4, I came to the
 conclusion that this is not done. So, I suppose that the gcd created within the adrt
-will bind the wrong version of %? And that there will be an error message because
-there will be no appropriate method called norm? Also, you refer to section 4.4
-for semantics preservation, but I do not see the relation between that section and
-semantics preservation; did you mean 4.1?
-\end{reviewer}
+will bind the wrong version of \%? And that there will be an error message because
+there will be no appropriate method called norm?
+\end{reviewer-addr}
 
 \begin{answer}
+We have added a statement at the end of Section 2.3 that clarifies the fact that the naive transformation is incorrect and the ADR transformation is more involved. Indeed, if we were to implement this transformation by hand, one of the first errors we would encounter is that long integers do not have a \verb=norm= method.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
-3)  Under “Target Semantics” you are enumerating several requirements from these
-Transformation objects. I suppose that these requirements are not checked in any way.
-\end{reviewer}
+\begin{reviewer-addr}
+Also, you refer to section 4.4 for semantics preservation, but I do not see the relation between that section and
+semantics preservation; did you mean 4.1?
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you! We updated the description to ``Therefore, to correctly transform the code, ADRT needs equivalent versions of the methods that operate on the long integer representation'', which should be a better description of Section 4.4.
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{reviewer-addr}
+3)  Under “Target Semantics” you are enumerating several requirements from these
+Transformation objects. I suppose that these requirements are not checked in any way.
+\end{reviewer-addr}
+
+\begin{answer}
+We updated the description in Section 4.1 to clearly explain the complexity introduced by referential equality and mutability and the fact that a static analysis pass would be useful (and is not yet part of our solution).
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -635,11 +613,13 @@ where T1toT2 has T1 as the high level type, and T2 as the low level type, while 
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 5)  At several points you require value types, but my I thought that the approach should also work for mutable types. Can you say why you need the types to be immutable? Also, what does immutable mean in that case, whether it is checked and how?
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We added an explanation of why mutability and referential equality make the transformations more difficult at the Section 4.1. Furthermore, we added the following idea for future work:
+``A desirable extension to our approach would be to statically check the compatibility of the high-level type with its coercions. This could prevent the programmer from incorrectly copying internally mutable objects inside the coercions.''
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -648,37 +628,40 @@ where T1toT2 has T1 as the high level type, and T2 as the low level type, while 
 
 \subsubsection{Suggestions}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 Initially I was very surprised that adrt was not a keyword – I found the explanation later;
 I suggest you bring the explanation forward.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you! We moved the description of the \verb=adrt= marker at the end of Section 2.2.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 On page 3 I was puzzling how the system could work without some signature defining that
 high level and the representation of a type were. This became clearer when I read the
 Description of IntPairComplexToLongComplex on page 5. I think you should bring it forward.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you! We moved the description of the \verb=IntPairComplexToLongComplex= object to Section 2.2.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 I also suggest you give a link to  Gaussian integers, so that the reader is not puzzled about the
 meaning of ``norm'' for pairs of integers.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you! We cited the original paper by Carl Friedrich Gauss that introduced Gaussian Integers and the Wikipedia page describing their properties.
 \end{answer}
 
 \end{document}
