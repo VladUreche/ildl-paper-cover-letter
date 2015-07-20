@@ -58,13 +58,30 @@ Please let us know your opinions and we will act accordingly. We will now contin
 
 \section{Required Second-phase Revisions}
 
-After lengthy discussions the reviewers have decided to accept this paper to phase 2. It is imperative that the authors integrate all clarifications made in the rebuttal, and in particular/in addition focus on the following points:
 
 \begin{editorial}
+After lengthy discussions the reviewers have decided to accept this paper to phase 2. It is imperative that the authors integrate all clarifications made in the rebuttal, and in particular/in addition focus on the following points:
+
 1. As promised in the response, add breakdowns of performance measurements wrt the mentioned sources of improvements
 \end{editorial}
 
 \begin{answer}
+
+We addressed the above comment fully, integrating extended material that was summarized in our
+response:
+
+\begin{itemize}
+\item The revised benchmark section contains full breakdowns of performance measurements, especially
+quantifying memory effects. The benchmarks discussion is now much more detailed.
+
+\item We added examples of transformation description objects in section 2.2 (partial) and in an Appendix.
+\item We clarified ``the sequence of transformations that lead to stack allocation'' (end of 2.1).
+\item We clarified the motivation for the scoped nature of the transformation in section 2.2.
+\item We discuss dynamically loaded code (4.5, heading ``Dynamic and native code''), static analysis
+  (clarification added to end of 4.1), cascading scopes (4.2, heading ``handling nested transformation description objects'').
+\item We added clarifications (``suffixes to distinguish the 'gcd' methods) in section 2.3.
+\end{itemize}
+
 \end{answer}
 
 \begin{editorial}
@@ -72,11 +89,13 @@ After lengthy discussions the reviewers have decided to accept this paper to pha
 \end{editorial}
 
 \begin{answer}
+We went over the paper to ensure that we do not claim applicability beyond Scala. In the Introduction section we changed occurrences of ``general'' (pertaining to the flexibility of the transformation) to ``as the programmer sees fit''. In the Conclusions we added an explicit sentence: ``We demonstrated our mechanism in the Scala language, yet speculate that the same principles can be applicable in different language settings.'' This is the strongest generality claim we make in the revised paper, yet we believe it is reasonable to be speculative in a Conclusions section.
 \end{answer}
 
-What follows is a set of responses to each of the reviewers' comments and requests.
 
-Once again, we are grateful to the reviewers for the work they put into the reviews and their very useful feedback! We apologize in advance for the feedback that we did not have time or did not know how to address, but, nevertheless, we have done our best to improve the paper.
+%What follows is a set of responses to each of the reviewers' comments and requests.
+
+%Once again, we are grateful to the reviewers for the work they put into the reviews and their very useful feedback! We apologize in advance for the feedback that we did not have time or did not know how to address, but, nevertheless, we have done our best to improve the paper.
 
 
 
@@ -95,7 +114,7 @@ Once again, we are grateful to the reviewers for the work they put into the revi
 
 \newpage
 
-\section{Individual Reviews}
+\section{Other Edits (non-required): Individual Reviews}
 
 \subsection{First Review}
 
