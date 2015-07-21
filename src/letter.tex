@@ -46,53 +46,67 @@
 We would like to thank our reviewers for their thorough examination of this paper and their suggestions, which allowed us to make the paper more useful and accessible. We addressed all comments, without exceptions, to the best of our ability.
 
 
-\newpage
-
 \section{Required Second-phase Revisions}
 
-
-\begin{editorial}
-After lengthy discussions the reviewers have decided to accept this paper to phase 2. It is imperative that the authors integrate all clarifications made in the rebuttal, and in particular/in addition focus on the following points:
-
-1. As promised in the response, add breakdowns of performance measurements wrt the mentioned sources of improvements
-\end{editorial}
+\begin{editorial-addr}
+After lengthy discussions the reviewers have decided to accept this paper to phase 2. It is imperative that the authors integrate all clarifications made in the rebuttal.
+\end{editorial-addr}
 
 \begin{answer}
-
-We addressed the above comment fully, integrating extended material that was summarized in our
-response:
+We integrated the rebuttal response and have indicated the relevant sections and paragraphs in the Individual Reviews section.
+The most important points are:
 
 \begin{itemize}
-\item The revised benchmark section contains full breakdowns of performance measurements, especially
-quantifying memory effects. The benchmarks discussion is now much more detailed.
-
-\item We added examples of transformation description objects in section 2.2 (partial) and in an Appendix.
-\item We clarified ``the sequence of transformations that lead to stack allocation'' (end of 2.1).
-\item We clarified the motivation for the scoped nature of the transformation in section 2.2.
-\item We discuss dynamically loaded code (4.5, heading ``Dynamic and native code''), static analysis
-  (clarification added to end of 4.1), cascading scopes (4.2, heading ``handling nested transformation description objects'').
-\item We added clarifications (``suffixes to distinguish the 'gcd' methods) in section 2.3.
+\item We added suffixes to distinguish the 'gcd' methods in Section 2.3 on page 3.
+\item We clarified ``the sequence of transformations'' that lead to stack allocation of Gaussian integers at the end of Section 2.1 on page 3;
+\item We clarified ``the sources of speedups'' in the Section 6 on page 14;
+\item We have given line of code counts for all description objects in the Benchmarks (Section 6, page 13-18);
+\item We added extracts of the transformation description object in Section 2.2 on page 3 and in the Appendix on page 20;
+\item We clarified the motivation for the scoped nature of the transformation in Section 2.2 on page 3;
+\item We discuss dynamically loaded code in Section 4.5 on page 11, subsection ``Dynamic and native code'';
+\item We discuss static analysis in Section 4.1 on page 7, in the ``Target Semantics'' subsection;
+\item We discuss cascading and cyclic scopes in Section 4.2 at the top of page 9;
 \end{itemize}
-
 \end{answer}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{editorial-addr}
-2. Tone down the claims regarding the generality of the approach, as it is yet unclear whether/how it applies beyond Scala
+In particular/in addition focus on the following points: \\
+1. As promised in the response, add breakdowns of performance measurements with respect to the mentioned sources of improvements
+\end{editorial-addr}
+
+\begin{answer}
+The revised benchmark section contains a breakdown of performance measurements, on two axes:
+\begin{packed_item}
+  \item Quantifying memory effects (garbage produced, GC pauses);
+  \item Breaking down each transformation in small steps, where a single variable changes.
+\end{packed_item}
+The breakdown shows exactly where the performance increases come from. Furthermore, the fact that we change a single variable at a time allows us to quantify the contribution of each transformation step towards the overall speedup.
+
+Although we have included as much detail as we could in the 5 pages of the Benchmarks section, the project documentation, available at \url{https://github.com/miniboxing/ildl-plugin/wiki} is even more detailed and contains more in-depth analyses. We intend to distribute a virtual machine containing a static mirror of the documentation (and where benchmarks can be reproduced) as the paper's enclosed artifact, making it available to interested readers.
+\end{answer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{editorial-addr}
+2. Tone down the claims regarding the generality of the approach, as it is yet unclear whether/how it applies beyond Scala.
 \end{editorial-addr}
 
 \begin{answer}
 We went over the paper to ensure that we do not claim applicability beyond Scala. In the Introduction section we changed occurrences of ``general'' (pertaining to the flexibility of the transformation) to ``as the programmer sees fit''. In the Conclusions we added an explicit sentence: ``We demonstrated our mechanism in the Scala language, yet speculate that the same principles can be applicable in different language settings.'' This is the strongest generality claim we make in the revised paper, yet we believe it is reasonable to be speculative in a Conclusions section.
+
+On the technical side, we have included a list of compiler features that are necessary to implement the ADR transformation mechanism in Section 5.1 on page 13.
 \end{answer}
 
-
-%What follows is a set of responses to each of the reviewers' comments and requests.
-
-%Once again, we are grateful to the reviewers for the work they put into the reviews and their very useful feedback! We apologize in advance for the feedback that we did not have time or did not know how to address, but, nevertheless, we have done our best to improve the paper.
-
-
+\newpage
 \section{Feedback Request: Title Change}
 
-We would like to take a moment to ask our reviewers  their opinion:
+We would like to take a moment to ask our reviewers for their opinion:
 
 We are considering using the name ``Data-centric Meta-programming'' for our technique. It captures the programmer-driven and compile-time aspects of our work while keeping the focus on data: data representation and operations on data. We have used this title in two presentations (\href{https://speakerdeck.com/vladureche/data-centric-metaprogramming-at-icooolps-2015}{ICOOOLPS} and \href{https://speakerdeck.com/vladureche/data-centric-metaprogramming-at-ecocloud-2015}{EcoCloud}) with very good feedback.
 
@@ -105,9 +119,12 @@ If the reviewers have any feedback on the possible title change, it would be hig
 
 
 
+
+
+
 \newpage
 
-\section{Other Edits (non-required): Individual Reviews}
+\section{Individual Reviews}
 
 \subsection{First Review}
 
@@ -138,20 +155,25 @@ This paper describes how programmers specify more space efficient data layout in
 \end{reviewer-addr}
 
 \begin{answer}
-In Section 2.2 we explained why we think it's desirable to allow the programmer to define the transformation description object and why this process is very difficult to automate: ``A natural question to ask is why not automate ...''.
+In the revised paper, Section 2.2 on page 3 explains why it is desirable to allow the programmer to define the transformation description object and why this process is difficult to automate: ``A natural question to ask is why not automate ...''.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item The analysis is missing key descriptions of 1) programmer work, 2) methodology for experiments (points to a web page), and 3) memory and code analysis of results.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+\begin{enumerate}
+  \item In Section 6 on pages 14-17 we added exact counts for each transformation description object used. A full user study is unfortunately beyond the scope of this paper;
+  \item In Section 6 on page 13 we cited the "Statistically Rigorous Java Performance Evaluation" by Georges et al. (OOPSLA '07), which is the underlying foundation of the ScalaMeter benchmarking framework;
+  \item Section 6 now contains the memory analyses suggested. Code analysis is impossible to perform, as the just-in-time (JIT) compiler inside the JVM can add code (through inlining), remove code (through dead code elimination) and transform code (through other optimizations). Thus, any small change in the JIT heuristics would immediately invalidate the code analysis results.
+\end{enumerate}
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -160,57 +182,62 @@ In Section 2.2 we explained why we think it's desirable to allow the programmer 
 
 \subsubsection{Overall}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 This work has the potential to be very interesting, but this paper is not yet ready to accepted, because of presentations choices and lack of analysis of where the benefits come from and discussion of programmer work.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+This has been addressed in Section 6, pages 13-18, and we have an even more in-depth description in the project documentation, which will be distributed as the paper artifact. Currently, the documentation is available at \url{https://github.com/miniboxing/ildl-plugin/wiki}.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The paragraph starting with "In this way.." in the introduction uses the passive voice (a problem elsewhere as well), and so it very difficult to tell what the programmer does, what the compiler does, and what the runtime does.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We have clarified this in the Introduction by clearly separating the programmer's and the compiler's responsibilities. We have re-iterated them in Section 2, on pages 2-4.
+
+Should the reviewers encounter other areas where the responsibilities are not clear, we will gladly address them.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
-This lack of clarity on how the approach works and fits into the existing scala system runs throughout the paper.
-\end{reviewer}
+\begin{reviewer-addr}
+This lack of clarity on how the approach works and fits into the existing Scala system runs throughout the paper.
+\end{reviewer-addr}
 
 \begin{answer}
+This has been addressed in Section 5.1 on 13, where we clearly explain what features we used from the Scala compiler and in the Appendix on page 20, where we show an end-to-end example of an ADR transformation.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 Section 2.1 lacks any description of what the approach actually does to the code or allocation, and thus why the code improves.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
-We have explained why the speedup occurs in Section 2.1 (``This rather large speedup is the effect of ...'') and provide a full breakdown of how the speedup is achieved in the Benchmarks section.
+We have explained why the speedup occurs in Section 2.1 (``This rather large speedup is the effect of ...'') and provide a full breakdown of how the speedup is achieved in the Benchmarks (Section 6) on page 14.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The IntPairComplexToLongComplex method is never defined in the paper.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
-We included a shortened version of this description object as early as Section 2.1 and included a full description in the appendix.
+We included a shortened version of this description object as early as Section 2.1 and included an extract in the Appendix on page 20. Unfortunately, being 40 LOC long, the full description object cannot be included in the paper directly.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -222,63 +249,72 @@ Section 4.1 elides all the details, but that is the actual work the developer ne
 \end{reviewer-addr}
 
 \begin{answer}
-We have added brief passages on how the transformation description objects should be defined in Sections 2.2 and 4.1. There are two reasons we refrain from giving a recipe: 1. Each set of transformations is ultimately tailored for the exact program it is meant for and 2. The target audience, namely the research community, would benefit less from this information. Instead, we show complete transformations with tips and tricks in the online project documentation (\url{https://github.com/miniboxing/ildl-plugin/wiki}), which is the entry point for the programmers.
+We have added brief passages on how the transformation description objects should be defined in Sections 2.2 on page 3 and 4.1 on page 6. There are two reasons we refrain from giving a recipe:
+\begin{packed_item}
+\item[1.] Each set of transformations is ultimately tailored for the exact program it is meant for
+\item[2.] The target audience, the research community, would benefit less from this information.
+\end{packed_item}
+Instead, we show complete transformations with tips and tricks in the online project documentation (\url{https://github.com/miniboxing/ildl-plugin/wiki}), which is the entry point for the programmers.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The key work of the programmer on how to define data transformations is also missing from the other examples. None of the specific resulting consequences are measured, e.g., reduced data allocation or smaller code footprint (or larger).
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+This has been addressed in Section 6, pages 13-18, and we have an even more in-depth description in the project documentation, which will be distributed as the paper artifact. Currently, the documentation is available at \url{https://github.com/miniboxing/ildl-plugin/wiki}.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 Does the approach attains it's improvements from less allocation, better code, or both, and if both, which one is more important. The results section does not resolve this question. Results are just: microbenchmarks go faster.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you for bringing up this point, we completely agree. Section 6 on pages 13-18 now addresses exactly this problem: ``why do the microbenchmarks go faster?''.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The methodology is not described. Measuring JIT code and GC has a number of challenges and it is not sufficient to point the reader to the Scala web page to find out about the performance analysis methodology. Since the approach is saving GC and/or allocation, that actually should be measured and reported.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+This has been addressed in Section 6 on pages 14-17 and in the project documentation \url{https://github.com/miniboxing/ildl-plugin/wiki}.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 Data layout is a memory optimization, yet the results do not include memory.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Data layout is indeed a memory optimization, but ADRT is more than data layout. Aside from adding memory results, Section 6 enumerates the other sources of performance on page 14 and goes on to show how the benchmarks benefit from them.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 The paper needs a discussion of how hard it is to define these transformations and how much code it takes. Can they be sprinkled lots of places or just one? How hard is it for developers to do it?
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
-This point has been addressed in Sections 4.6 and 6.1.
+This point has been addressed in Section 6, with the addition LOC count for each transformation.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -352,16 +388,26 @@ Thank you for the very positive review!
 This paper presents a technique to automatically change data representation for efficient access. To use the technique, users first delimits the scope for which transformation should be considered. In addition, users also provide the compiler (in this case the Scala compiler) with a descriptor object the encodes how each of the data types can be transformed. Given these inputs, the compiler then searches through the delimited scope and performs a source-to-source transformation in choosing the most efficient representation for each data type. The paper shows that the technique can handle interactions with other Java language features, and can improve performance in a variety of benchmarks.
 
 
-
 \subsubsection{Comments For Author}
 
+\begin{reviewer-addr}
 The paper discusses an important problem (data layout) and proposes an interesting semi-automated solution. It is a well-structured paper.
+\end{reviewer-addr}
+
+\begin{answer}
+Thank you for the encouraging feedback!
+\end{answer}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 My main concern, however, is with the novelty of the solution to the problem, especially given the prior work on late data representation, which makes up the bulk of the implementation of the presented technique:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{5mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{reviewer-addr}
 \begin{packed_item}
@@ -370,14 +416,14 @@ My main concern, however, is with the novelty of the solution to the problem, es
 \end{reviewer-addr}
 
 \begin{answer}
-Different transformations are suitable for different contexts, all within a single program. The scoped nature of the ADRT transformation is not a limitation, but actually part of its design. We have clarified this in Sections 2.2 and 4.6.
+Different transformations are suitable for different contexts, all within a single program. The scoped nature of the ADRT transformation is not a limitation, but an advantage of its design. We have clarified this in Section 2.2 on page 3.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item How easy is it to write the transformation objects? While some
 seem trivial to write (e.g., the motivating example), I imagine some of them
@@ -385,16 +431,17 @@ mentioned in the benchmarks can be quite involved. It would be great if the
 authors can show how big those transformers are, and also discuss how can
 developers come up with such representations.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We have included line of code counts in Section 6 on pages 14-17 and a short excerpt from the motivating example transformation (which is not as simple as it may seem) in the Appendix on page 20.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{5mm}
+\vspace{20mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item Would the same technique be applicable beyond Scala? For instance
 I would like to understand whether the proposed technique can be achieved
@@ -403,9 +450,27 @@ compiler choosing how to implement each instance of the tagged union using
 static analysis, and inserting appropriate coercions as needed. In that sense
 it seems to be similar to the technique proposed in the paper.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+This is good (and difficult) question. We have outlined the compiler features we use
+in order to implement ADR transformations in Section 5.1 on page 13, but
+we haven't tried porting the approach to a different compiler.
+
+The tagged union solution was used in dynamic language virtual machines
+before just-in-time compilation became the norm. The results were good,
+but could be significantly improved by aggressive speculation, which was
+able to completely remove tag checks and dispatches. In our approach, we
+take the same path of only allowing one representation per value, so we
+make a static decision at compile time. However, miniboxing specialization
+uses a tagged union-like approach and the results are quite good, so
+allowing values to be stored as tagged unions is not necessarily bad.
+Thus the response ultimately depends on the actual program being transformed.
+
+The single reason we did not include this answer in the paper, although
+it's a very interesting question, is because we could not tie it into the
+overall story of the paper (similarly to the database row example from
+the rebuttal, for which we could not find a good place in the paper).
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -414,26 +479,15 @@ it seems to be similar to the technique proposed in the paper.
 
 \subsubsection{Some Technicalities}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item How does the technique handle dynamically loaded code in Scala?
-\end{packed_item}
-\end{reviewer}
-
-\begin{answer}
-\end{answer}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{5mm}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{reviewer}
-\begin{packed_item}
 \item What about code that calls native methods via JNI?
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We discuss dynamically loaded code and JNI calls in Section 4.5 on page 11, subsection ``Dynamic and native code'';
 \end{answer}
 
 
@@ -486,7 +540,7 @@ observe speedups of about 10 times.
 
 \subsubsection{Points in Favor}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item Clearly stated problem, and clear solution
 \item The paper is extremely well-written with a small motivating example, and very clear organization.
@@ -494,9 +548,10 @@ Questions are asked which motivate the discussion further, and pointers are give
 the answer will appear.
 \item Implementation has been developed, and the benchmarks are positive
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Thank you for your kind review!
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -505,23 +560,27 @@ the answer will appear.
 
 \subsubsection{Points Against}
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item The semantics of the ADRT is described incrementally and in terms of three phases. Various
 Extra aspects of the phases are uncovered as we progress through the paper. Is it possible
 to give a more declarative semantics? If not, I would propose that in the next version of
 your paper, you give the definition of each phase in one go.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We have done so in the Appendix on page 20 and have a special section of the project documentation
+which walks programmers through a step by step transformation of their code:
+\url{https://github.com/miniboxing/ildl-plugin/wiki/Tutorial-~-Example-%28Part-1%29}.
+We intend to include a static mirror of the project documentation in the companion artifact of the paper.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 \begin{packed_item}
 \item Even though the benchmark results are very encouraging, I wonder how often one has
 the opportunity for such data representations. The benchmarks you have chosen either
@@ -529,9 +588,16 @@ allocated large numbers of short lived intermediate objects, or have large conta
 objects; thus you could think that they were specifically chosen for this work, and that
 they would not be representative of many real situations.
 \end{packed_item}
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+Indeed the examples we have chosen had room for optimization,
+but the ability to completely eliminate object allocations in a piece of code or to specialize collections
+for their task is more general than just getting good speedups for special cases.
+
+Nevertheless, it is difficult to give an answer. The approach has just been developed and we are hard at work
+preparing the Scala compiler plugin for it. We are curious ourselves how programmers will choose to
+use this transformation and what new things will surface.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -546,7 +612,7 @@ the “gcd” method called in the first box in page 2.
 \end{reviewer-addr}
 
 \begin{answer}
-We have added a suffix which distinguishes the different \verb=gcd= methods in Section 2.
+Yes, indeed. We have added a suffix which distinguishes the different \verb=gcd= methods in Section 2 (on page 3).
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -562,7 +628,10 @@ there will be no appropriate method called norm?
 \end{reviewer-addr}
 
 \begin{answer}
-We have added a statement at the end of Section 2.3 that clarifies the fact that the naive transformation is incorrect and the ADR transformation is more involved. Indeed, if we were to implement this transformation by hand, one of the first errors we would encounter is that long integers do not have a \verb=norm= method.
+We have added a statement at the end of Section 2.3 (on page 4) that clarifies the fact that
+the naive transformation is incorrect and the ADR transformation is more involved. Indeed,
+if we were to implement this transformation by hand, one of the first errors we would
+encounter is that long integers do not have a \verb=norm= method.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -575,7 +644,7 @@ semantics preservation; did you mean 4.1?
 \end{reviewer-addr}
 
 \begin{answer}
-Thank you! We updated the description to ``Therefore, to correctly transform the code, ADRT needs equivalent versions of the methods that operate on the long integer representation'', which should be a better description of Section 4.4.
+We updated the description to ``Therefore, to correctly transform the code, ADRT needs equivalent versions of the methods that operate on the long integer representation'', which should be a better description of Section 4.4.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -588,14 +657,14 @@ Transformation objects. I suppose that these requirements are not checked in any
 \end{reviewer-addr}
 
 \begin{answer}
-We updated the description in Section 4.1 to clearly explain the complexity introduced by referential equality and mutability and the fact that a static analysis pass would be useful (and is not yet part of our solution).
+We updated the description in Section 4.1 on page 7 to clearly explain the complexity introduced by referential equality and mutability and the fact that a static analysis pass would be useful (and is not yet part of our solution).
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace{5mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{reviewer}
+\begin{reviewer-addr}
 4)  Do you support cyclic representation transformation, eg something
 like
 adrt(T1toT2){
@@ -604,9 +673,10 @@ adrt(T1toT2){
    }
 }
 where T1toT2 has T1 as the high level type, and T2 as the low level type, while T2toT1 has T2 as the high level type, and T1 as the low level type.
-\end{reviewer}
+\end{reviewer-addr}
 
 \begin{answer}
+We added a discussion on cascading and cyclic scopes in Section 4.2 at the top of page 9;
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -618,7 +688,7 @@ where T1toT2 has T1 as the high level type, and T2 as the low level type, while 
 \end{reviewer-addr}
 
 \begin{answer}
-We added an explanation of why mutability and referential equality make the transformations more difficult at the Section 4.1. Furthermore, we added the following idea for future work:
+We added an explanation of why mutability and referential equality make the transformations more difficult at the Section 4.1 on page 7. Furthermore, we added the following idea for future work:
 ``A desirable extension to our approach would be to statically check the compatibility of the high-level type with its coercions. This could prevent the programmer from incorrectly copying internally mutable objects inside the coercions.''
 \end{answer}
 
@@ -634,7 +704,7 @@ I suggest you bring the explanation forward.
 \end{reviewer-addr}
 
 \begin{answer}
-Thank you! We moved the description of the \verb=adrt= marker at the end of Section 2.2.
+Thank you for the feedback! We moved the description of the \verb=adrt= marker at the end of Section 2.2 on page 3.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -648,7 +718,7 @@ Description of IntPairComplexToLongComplex on page 5. I think you should bring i
 \end{reviewer-addr}
 
 \begin{answer}
-Thank you! We moved the description of the \verb=IntPairComplexToLongComplex= object to Section 2.2.
+Yes, we moved the description of the \\ \verb=IntPairComplexToLongComplex= object to Section 2.2 on page 3.
 \end{answer}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -661,7 +731,7 @@ meaning of ``norm'' for pairs of integers.
 \end{reviewer-addr}
 
 \begin{answer}
-Thank you! We cited the original paper by Carl Friedrich Gauss that introduced Gaussian Integers and the Wikipedia page describing their properties.
+Thank you! We cited the original paper by Carl Friedrich Gauss and the Wikipedia page describing Gaussian integers and their properties.
 \end{answer}
 
 \end{document}
